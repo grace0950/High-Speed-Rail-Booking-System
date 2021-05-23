@@ -6,3 +6,5 @@ cd "/home/gf0927/kafka/kafka_2.13-2.8.0"
 bin/zookeeper-server-start.sh config/zookeeper.properties
 
 bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic login_topic
+
+echo "Topic Create Success!"
