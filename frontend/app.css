@@ -1,0 +1,56 @@
+.content {
+    color: #ffffff;
+    font-size: 40px;
+}
+
+.bg {
+    background: url('image/bg.JPG');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    height:2160px;
+    text-align: center;
+    line-height: 600px;
+}
+
+.bg-blur {
+    float: left;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    -webkit-filter: blur(15px);
+    -moz-filter: blur(15px);
+    -o-filter: blur(15px);
+    -ms-filter: blur(15px);
+    filter: blur(15px);
+}
+
+.content-front {
+  position:absolute;
+  left: 10px;
+  right: 10px;
+  height:600px;
+  line-height: 100px;
+  text-align: center;
+}
+
+.buttons {
+    text-align: center;
+}
+
+.myButton {
+  border-radius: 5%;
+  border: 2px solid #EA7500; /* Orange */
+}
+
+.myButton:hover {   
+  border: 2px solid #4F4F4F; /* Orange */
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.myButton:active {
+  border: 2px solid #4F4F4F; /* Orange */
+  -webkit-filter: brightness(0.75);
+}
