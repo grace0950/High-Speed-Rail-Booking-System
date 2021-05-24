@@ -1,9 +1,15 @@
-let login = () => {
+let signUp = () => {
     let account = document.getElementById("account").value;
     let password = document.getElementById("pwd").value;
+    let rpassword = document.getElementById("rpwd").value;
+    let name = document.getElementById("name").value;
 
     // 之後增加 kafka frontend 需要的
-    if(account == "") {
+    if(password != rpassword) {
+        window.alert("Password 和 Repeat Password 不同");
+        return;
+    }
+    else if(account == "") {
         window.alert("Account 不可為空");
         return;
     }
@@ -11,8 +17,12 @@ let login = () => {
         window.alert("Password 不可為空");
         return;
     }
+    else if(name == "") {
+        window.alert("Name 不可為空");
+        return;
+    }
 
-    // 之後換成 kafka frontend api 的格式
+    // 之後換成 kafka frontend 註冊 api 的格式
     payload = {
         account: account,
         password: password

@@ -2,7 +2,7 @@
 <html>
   <head>
     <script type="text/javascript" src="login.js"></script>
-    <title>Welcome</title>
+    <title>登入</title>
   </head>
 
 
@@ -10,8 +10,8 @@
       
     <div class="loginpanel">
         <div class="txt">
-          <input id="user" type="text" placeholder="Username" />
-          <label for="user" class="entypo-user"></label>
+          <input id="account" type="text" placeholder="Account" />
+          <label for="account" class="entypo-account"></label>
         </div>
         <div class="txt">
           <input id="pwd" type="password" placeholder="Password" />
@@ -19,8 +19,9 @@
         </div>
         <div class="buttons">
           <input type="button" value="Login" onclick="login()">
-
         </div>
+        <div class="txtbutton" onclick="self.location.href='signUp.html'">Sign Up</div>
+
     </div>
 
   </body>
