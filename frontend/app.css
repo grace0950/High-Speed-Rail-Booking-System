@@ -1,8 +1,6 @@
 .content {
-    color: #ffffff;
-    font-size: 40px;
+  color: #ffffff;
 }
-
 .bg {
     background: url('image/bg.JPG');
     background-repeat: no-repeat;
@@ -13,7 +11,6 @@
     text-align: center;
     line-height: 600px;
 }
-
 .bg-blur {
     float: left;
     width: 100%;
@@ -26,31 +23,89 @@
     -ms-filter: blur(15px);
     filter: blur(15px);
 }
-
 .content-front {
   position:absolute;
   left: 10px;
   right: 10px;
-  height:600px;
-  line-height: 100px;
+  /* line-height: 100px; */
   text-align: center;
 }
 
-.buttons {
-    text-align: center;
+.textBoxPanel {
+  /* margin-top: 30%; */
+}
+
+.textBox {
+  margin-top: 5%;
+  border-radius: 5px;
+  border: 2px solid #555555; /* Orange */
+  width: 60%;
+  height: 25px;
 }
 
 .myButton {
+  border-radius: 15px;
+  border: 2px solid #EA7500; /* Orange */
+  background-color:white;
+  margin-top: 5%;
+  height: 10%;
+  width: 50%;
+  cursor: pointer;
+}
+.myButton:hover {   
+  border: 2px solid #4F4F4F; /* Dark */
+  /* box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19); */
+}
+.myButton:active {
+  border: 2px solid #4F4F4F; /* Dark */
+  -webkit-filter: brightness(0.75);
+}
+
+.txtButton {
+  margin-top: 10px;
+  color: aqua;
+  cursor: pointer;
+}
+
+
+/* login and signUp page 用 */
+.loginPanel {
+  border-radius: 25px;
+  /* border: 2px solid black; */
+  color: #ffffff;
+  position:absolute;
+  top: 50%;
+  left: 50%;
+  height: 45%;
+  width: 20%;
+  transform: translateX(-50%) translateY(-50%);
+  text-align: center;
+  /* background:rgb(187, 177, 133); */
+  background:rgba(158, 157, 157, 0.596);
+}
+
+
+/* mainPage 用*/
+.welcome {
+  font-size: 40px;
+  line-height: 100px;
+}
+.imageButtons {
+  line-height: 100px;
+  text-align: center;
+}
+.imageButton {
   border-radius: 5%;
   border: 2px solid #EA7500; /* Orange */
+  cursor: pointer;
 }
-
-.myButton:hover {   
-  border: 2px solid #4F4F4F; /* Orange */
+.imageButton:hover {   
+  border: 2px solid #4F4F4F; /* Dark */
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  cursor: pointer;
 }
-
-.myButton:active {
-  border: 2px solid #4F4F4F; /* Orange */
+.imageButton:active {
+  border: 2px solid #4F4F4F; /* Dark */
   -webkit-filter: brightness(0.75);
+  cursor: pointer;
 }

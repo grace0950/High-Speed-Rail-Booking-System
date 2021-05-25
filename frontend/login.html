@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<link rel=stylesheet type="text/css" href="app.css">
+
 <html>
   <head>
     <script type="text/javascript" src="login.js"></script>
@@ -7,20 +9,22 @@
 
 
   <body>
+    <div class="bg bg-blur"></div>
       
-    <div class="loginpanel">
-        <div class="txt">
-          <input id="account" type="text" placeholder="Account" />
+    <div class="loginPanel">
+        <h1>登入</h1>
+        <div class="textBoxPanel">
+          <input id="account" class="textBox" type="text" placeholder="Account" />
           <label for="account" class="entypo-account"></label>
-        </div>
-        <div class="txt">
-          <input id="pwd" type="password" placeholder="Password" />
+
+          <input id="pwd" class="textBox" type="password" placeholder="Password" />
           <label for="pwd" class="entypo-lock"></label>
         </div>
-        <div class="buttons">
-          <input type="button" value="Login" onclick="login()">
-        </div>
-        <div class="txtbutton" onclick="self.location.href='signUp.html'">Sign Up</div>
+
+        <!-- <div class="buttons"> -->
+        <input type="button" class="myButton" value="Login" onclick="login()">
+        <!-- </div> -->
+        <div class="txtButton" onclick="self.location.href='signUp.html'">Sign Up</div>
 
     </div>
 
