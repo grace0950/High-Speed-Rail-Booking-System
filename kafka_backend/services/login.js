@@ -15,9 +15,7 @@ handle_request = (data, callback) => {
   try {
     console.log("In Login");
     let sqlQuery =
-      "select password, accessInd from user where username = '" +
-      data.username +
-      "'";
+      "select password from user where username = '" + data.username + "'";
     mysql.fetchData(function (err, result) {
       if (err) {
         console.log(err);

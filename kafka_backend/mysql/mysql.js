@@ -15,10 +15,10 @@ function getConnection() {
 
 let pool = mysql.createPool({
   connectionLimit: 10,
-    host: "localhost",
-    user: "debian-sys-maint",
-    password: "WOXIpgDm5Ub48RXC",
-    database: "CS_HSR",
+  host: "localhost",
+  user: "debian-sys-maint",
+  password: "WOXIpgDm5Ub48RXC",
+  database: "CS_HSR",
 });
 
 function insertData(callback, sqlQuery) {
@@ -59,7 +59,7 @@ function fetchData(callback, sqlQuery) {
   });
   console.log("\nConnection closed..");
   connection.end();
-  // connection.release()
+  //   connection.release();
   // });
 }
 
