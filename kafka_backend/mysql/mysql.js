@@ -46,6 +46,8 @@ function fetchData(callback, sqlQuery) {
   console.log("\nSQL Query::" + sqlQuery);
   connection = getConnection();
 
+  connection.connect();
+
   // pool.getConnection(function (err, connection) {
   connection.query(sqlQuery, function (err, rows) {
     if (err) {
