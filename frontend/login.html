@@ -8,7 +8,7 @@
   </head>
 
 
-  <body>
+  <body onkeydown="keyLogin();">
     <div class="bg bg-blur"></div>
       
     <div class="loginPanel">
@@ -22,9 +22,9 @@
         </div>
 
         <!-- <div class="buttons"> -->
-        <input type="button" class="myButton" value="Login" onclick="login()">
+        <input id="btn" type="button" class="myButton transition" value="Login" onclick="login()">
         <!-- </div> -->
-        <div class="txtButton" onclick="self.location.href='signUp.html'">Sign Up</div>
+        <div class="txtButton transition" onclick="self.location.href='signUp.html'">Sign Up</div>
 
     </div>
 

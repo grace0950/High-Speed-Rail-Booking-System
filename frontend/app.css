@@ -31,9 +31,9 @@
   text-align: center;
 }
 
-.textBoxPanel {
-  /* margin-top: 30%; */
-}
+/* .textBoxPanel {
+  margin-top: 30%;
+} */
 
 .textBox {
   margin-top: 5%;
@@ -67,6 +67,9 @@
   cursor: pointer;
 }
 
+.transition {
+  transition: .2s;
+}
 
 /* login and signUp page 用 */
 .loginPanel {
