@@ -12,9 +12,9 @@ try {
     console.log(JSON.stringify(message.value));
     let data = JSON.parse(message.value);
 
-    console.log(data);
+    console.log(data.replyTo);
 
-    login.handle_request(data, function (err, res) {
+    login.handle_request(data.data, function (err, res) {
       console.log("after handle" + res);
       let payloads = [
         {

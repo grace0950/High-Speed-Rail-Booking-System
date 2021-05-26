@@ -1,8 +1,12 @@
 let express = require("express");
 const passport = require("passport");
-let router = express.Router();
+let router = express();
 require("./passport")(passport);
 var kafka = require("./kafka/client");
+// bodyParser
+var bodyParser = require("body-parser");
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded());
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
@@ -41,3 +45,5 @@ router.post("/login", function (req, res) {
     }
   })(req, res);
 });
+
+router.listen(3000);

@@ -1,4 +1,5 @@
 let fs = require("fs");
+const { connect } = require("http2");
 let mysql = require("mysql");
 let connection;
 
@@ -9,6 +10,7 @@ function getConnection() {
     user: "debian-sys-maint",
     password: "WOXIpgDm5Ub48RXC",
     database: "CS_HSR",
+    debug: false,
   });
   return connection;
 }
@@ -19,6 +21,7 @@ let pool = mysql.createPool({
   user: "debian-sys-maint",
   password: "WOXIpgDm5Ub48RXC",
   database: "CS_HSR",
+  debug: false,
 });
 
 function insertData(callback, sqlQuery) {
@@ -45,8 +48,6 @@ function insertData(callback, sqlQuery) {
 function fetchData(callback, sqlQuery) {
   console.log("\nSQL Query::" + sqlQuery);
   connection = getConnection();
-
-  connection.connect();
 
   // pool.getConnection(function (err, connection) {
   connection.query(sqlQuery, function (err, rows) {
