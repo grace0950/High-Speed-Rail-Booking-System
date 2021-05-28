@@ -8,6 +8,9 @@ var bodyParser = require("body-parser");
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded());
 
+const cors = require("cors");
+router.use(cors());
+
 /* GET users listing. */
 router.get("/", function (req, res, next) {
   res.send("respond with a resource");
