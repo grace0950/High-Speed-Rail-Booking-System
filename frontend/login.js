@@ -39,7 +39,7 @@ let login = async() => {
 
     // 之後換成 kafka frontend api 的格式
     payload = {
-        account: account.value,
+        username: account.value,
         password: password.value
     };
 
@@ -55,12 +55,15 @@ let login = async() => {
         unlock_all_btn();
     });
 
+    jsonData = res.json();
     if(res.status === 200 || res.status === 201) {
         window.localStorage.setItem("UID", res);
         window.location.href = "mainPage.html";
     }
-    else if(res.status === 400) window.alert(res.json().message);
-    else window.alert("Login Failed");
+    else {
+        window.alert("Something Worng!");
+    }
+    console.log(jsonData.message);
     unlock_all_btn();
 
     // fetch('http://localhost:3000/login', {
