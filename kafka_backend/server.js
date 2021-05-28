@@ -10,28 +10,30 @@ try {
   loginConsumer.on("message", function (message) {
     console.log("message received");
     console.log(JSON.stringify(message.value));
-    let data = JSON.parse(message.value);
+    if (message.value == "") {
+    } else {
+      let data = JSON.parse(message.value);
+      console.log(data.replyTo);
 
-    console.log(data.replyTo);
-
-    login.handle_request(data.data, function (err, res) {
-      console.log("after handle" + res);
-      let payloads = [
-        {
-          topic: data.replyTo,
-          messages: JSON.stringify({
-            correlationId: data.correlationId,
-            data: res,
-          }),
-          partition: 0,
-        },
-      ];
-      producer.send(payloads, function (err, data) {
-        // console.log(data);
-        console.log(payloads);
+      login.handle_request(data.data, function (err, res) {
+        console.log("after handle");
+        let payloads = [
+          {
+            topic: data.replyTo,
+            messages: JSON.stringify({
+              correlationId: data.correlationId,
+              data: res,
+            }),
+            partition: 0,
+          },
+        ];
+        producer.send(payloads, function (err, data) {
+          // console.log(data);
+          console.log(payloads);
+        });
+        // return;
       });
-      // return;
-    });
+    }
   });
 } catch (e) {
   console.log(e);

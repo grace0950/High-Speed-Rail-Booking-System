@@ -25,19 +25,15 @@ router.post("/login", function (req, res) {
       res.status(400).send();
     }
     if (response.status === 200) {
-      req.session.previousTime = new Date().getTime();
-      req.session.pageTime = [];
-      req.session.pages = [];
-      req.session.lastPage = "UserHome";
-      req.session.flag = true;
-      req.session.username = response.account;
-      console.log("session initialized. :" + req.session.account);
-      res.status(response.status).send(req.session.account);
-    } else if (response.status === 201) {
-      req.session.username = response.account;
-      console.log("session initialized for admin. : ");
-      console.log(req.session.account);
-      res.status(response.status).send(req.session.account);
+      res.status(response.status).send({ message: response.message });
+      // req.session.previousTime = new Date().getTime();
+      // req.session.pageTime = [];
+      // req.session.pages = [];
+      // req.session.lastPage = "UserHome";
+      // req.session.flag = true;
+      // req.session.username = response.account;
+      // console.log("session initialized. :" + req.session.account);
+      // res.status(response.status).send(req.session.account);
     } else if (response.status === 400) {
       res.status(response.status).send({ message: response.message });
     } else {

@@ -94,22 +94,25 @@ KafkaRPC.prototype.setupResponseQueue = function (producer, topic_name, next) {
   let consumer = self.connection.getConsumer("response_topic");
 
   consumer.on("message", function (message) {
-    console.log("msg received");
-    let data = JSON.parse(message.value);
-    console.log("Data received from backend");
-    console.log(data);
-    //get the correlationId
-    let correlationId = data.correlationId;
-    //is it a response to a pending request
-    if (correlationId in self.requests) {
-      //retrieve the request entry
-      let entry = self.requests[correlationId];
-      //make sure we don't timeout by clearing it
-      clearTimeout(entry.timeout);
-      //delete the entry from hash
-      delete self.requests[correlationId];
-      //callback, no err
-      entry.callback(null, data.data);
+    if (message.value == "") {
+    } else {
+      console.log("msg received");
+      let data = JSON.parse(message.value);
+      console.log("Data received from backend");
+      console.log(data);
+      //get the correlationId
+      let correlationId = data.correlationId;
+      //is it a response to a pending request
+      if (correlationId in self.requests) {
+        //retrieve the request entry
+        let entry = self.requests[correlationId];
+        //make sure we don't timeout by clearing it
+        clearTimeout(entry.timeout);
+        //delete the entry from hash
+        delete self.requests[correlationId];
+        //callback, no err
+        entry.callback(null, data.data);
+      }
     }
   });
 

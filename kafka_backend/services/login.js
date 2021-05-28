@@ -27,22 +27,16 @@ handle_request = (data, callback) => {
         if (result.length === 1) {
           console.log("Password: " + data.password);
           console.log("User Password: " + result[0].password);
-          // console.log(bcrypt.compareSync(data.password, result[0].password));
+          //console.log(bcrypt.compareSync(data.password, result[0].password));
 
-          // if (bcrypt.compareSync(data.password, result[0].password)) {
-          //   if (result[0].accessInd === "admin") {
-          //     response.status = 201;
-          //     response.username = data.username;
-          //     response.message = "Admin Login Credentials are correct";
-          //   } else {
-          //     response.status = 200;
-          //     response.username = data.username;
-          //     response.message = "User Login Credentials are correct";
-          //   }
-          // } else {
-          //   response.message = "Password is incorrect. Please try again";
-          //   response.status = 401;
-          // }
+          if (data.password == result[0].password) {
+            response.status = 200;
+            response.username = data.username;
+            response.message = "User Login Credentials are correct";
+          } else {
+            response.message = "Password is incorrect. Please try again";
+            response.status = 401;
+          }
           callback(null, response);
         } else {
           response.status = 400;

@@ -4,25 +4,46 @@ let mysql = require("mysql");
 let connection;
 
 //Put your mysql configuration settings - user, password, database and port
-function getConnection() {
-  connection = mysql.createConnection({
-    host: "localhost",
-    user: "debian-sys-maint",
-    password: "WOXIpgDm5Ub48RXC",
-    database: "CS_HSR",
-    debug: false,
-  });
-  return connection;
-}
+let db = {
+  host: "localhost",
+  user: "debian-sys-maint",
+  password: "IEtjRLuVr5Voa94v",
+  database: "CS_HSR",
+  port: 3306,
+  debug: false,
+};
 
-let pool = mysql.createPool({
+// function getConnection() {
+//   connection = mysql.createConnection({
+//     host: "localhost",
+//     user: "debian-sys-maint",
+//     password: "IEtjRLuVr5Voa94v",
+//     database: "CS_HSR",
+//     port: 3306,
+//     debug: false,
+//   });
+//   console.log(connection.state);
+//   return connection;
+// }
+
+const pool = mysql.createPool({
   connectionLimit: 10,
   host: "localhost",
   user: "debian-sys-maint",
-  password: "WOXIpgDm5Ub48RXC",
+  password: "IEtjRLuVr5Voa94v",
   database: "CS_HSR",
-  debug: false,
+  port: 3306,
 });
+
+// connection = mysql.createConnection(db);
+// connection.connect(function onConnect(err) {
+//   if (err) {
+//     console.log("error when connecting to db:", err);
+//   } // to avoid a hot loop, and to allow our node script to
+//   else {
+//     console.log(connection);
+//   }
+// });
 
 function insertData(callback, sqlQuery) {
   console.log("\nSQL Query:: " + sqlQuery);
@@ -45,12 +66,9 @@ function insertData(callback, sqlQuery) {
   // });
 }
 
-function fetchData(callback, sqlQuery) {
+const fetchData = (callback, sqlQuery) => {
   console.log("\nSQL Query::" + sqlQuery);
-  connection = getConnection();
-
-  // pool.getConnection(function (err, connection) {
-  connection.query(sqlQuery, function (err, rows) {
+  pool.query(sqlQuery, (err, rows) => {
     if (err) {
       console.log("ERROR: " + err.message);
     } else {
@@ -61,10 +79,27 @@ function fetchData(callback, sqlQuery) {
     }
   });
   console.log("\nConnection closed..");
-  connection.end();
-  //   connection.release();
-  // });
-}
+};
+//   console.log("\nSQL Query::" + sqlQuery);
+
+//   connection = getConnection();
+
+//   // pool.getConnection(function (err, connection) {
+//   connection.query(sqlQuery, (err, rows) => {
+//     if (err) {
+//       console.log("ERROR: " + err.message);
+//     } else {
+//       // return err or result
+//       console.log("DB Results:");
+//       console.log(rows);
+//       callback(err, rows);
+//     }
+//   });
+//   console.log("\nConnection closed..");
+//   connection.end();
+//   //   connection.release();
+//   // });
+// };
 
 function updateData(callback, sqlQuery) {
   console.log("\nSQL Query:: " + sqlQuery);
@@ -89,9 +124,7 @@ function updateData(callback, sqlQuery) {
 
 function deleteData(callback, sqlQuery) {
   console.log("\nSQL Query:: " + sqlQuery);
-
   connection = getConnection();
-  //
   // pool.getConnection(function (err, connection) {
   connection.query(sqlQuery, function (err, result) {
     if (err) {
@@ -108,7 +141,7 @@ function deleteData(callback, sqlQuery) {
   // });
 }
 
-exports.fetchData = fetchData;
+module.exports = { fetchData };
 exports.insertData = insertData;
 exports.updateData = updateData;
 exports.deleteData = deleteData;
