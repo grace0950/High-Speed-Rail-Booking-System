@@ -23,20 +23,6 @@ KafkaRPC.prototype.makeRequest = function (topic_name, content, callback) {
   console.log("IN kafka rpc ------------------------- " + topic_name);
 
   let tId = null;
-
-  //extratimeout for specific topic
-  // if(topic_name === 'logAnalyticsData_topic'){
-  //     tId = setTimeout(function (corr_id) {
-  //         //if this ever gets called we didn't get a response in a
-  //         //timely fashion
-  //         console.log('timeout');
-  //         callback(new Error("timeout " + corr_id));
-  //         //delete the entry from hash
-  //         delete self.requests[corr_id];
-  //     }, EXTRATIMEOUT, correlationId);
-  // }
-  // else{
-  //create a timeout for what should happen if we don't get a response
   tId = setTimeout(
     function (corr_id) {
       //if this ever gets called we didn't get a response in a
@@ -62,6 +48,7 @@ KafkaRPC.prototype.makeRequest = function (topic_name, content, callback) {
 
   //make sure we have a response topic
   self.setupResponseQueue(self.producer, topic_name, function () {
+    //put the entry in the hash so we can match the response later
     //put the request on a topic
     let payloads = [
       {
@@ -84,7 +71,7 @@ KafkaRPC.prototype.makeRequest = function (topic_name, content, callback) {
 
 KafkaRPC.prototype.setupResponseQueue = function (producer, topic_name, next) {
   //don't mess around if we have a queue
-  if (this.response_queue) return next();
+  // if (this.response_queue) return next();
 
   console.log("1");
 
