@@ -4,28 +4,6 @@ let mysql = require("mysql");
 let connection;
 
 //Put your mysql configuration settings - user, password, database and port
-let db = {
-  host: "localhost",
-  user: "debian-sys-maint",
-  password: "IEtjRLuVr5Voa94v",
-  database: "CS_HSR",
-  port: 3306,
-  debug: false,
-};
-
-// function getConnection() {
-//   connection = mysql.createConnection({
-//     host: "localhost",
-//     user: "debian-sys-maint",
-//     password: "IEtjRLuVr5Voa94v",
-//     database: "CS_HSR",
-//     port: 3306,
-//     debug: false,
-//   });
-//   console.log(connection.state);
-//   return connection;
-// }
-
 const pool = mysql.createPool({
   connectionLimit: 10,
   host: "localhost",
@@ -35,23 +13,9 @@ const pool = mysql.createPool({
   port: 3306,
 });
 
-// connection = mysql.createConnection(db);
-// connection.connect(function onConnect(err) {
-//   if (err) {
-//     console.log("error when connecting to db:", err);
-//   } // to avoid a hot loop, and to allow our node script to
-//   else {
-//     console.log(connection);
-//   }
-// });
-
-function insertData(callback, sqlQuery) {
+const insertData = (callback, sqlQuery) => {
   console.log("\nSQL Query:: " + sqlQuery);
-
-  connection = getConnection();
-
-  // pool.getConnection(function (err, connection){
-  connection.query(sqlQuery, function (err, result) {
+  pool.query(sqlQuery, (err, result) => {
     if (err) {
       console.log("ERROR: " + err.message);
     } else {
@@ -59,12 +23,9 @@ function insertData(callback, sqlQuery) {
       console.log("DB Results:" + result.affectedRows);
       callback(err, result);
     }
+    console.log("\nConnection closed..");
   });
-  console.log("\nConnection closed..");
-  connection.end();
-  // connection.release();
-  // });
-}
+};
 
 const fetchData = (callback, sqlQuery) => {
   console.log("\nSQL Query::" + sqlQuery);
@@ -77,29 +38,9 @@ const fetchData = (callback, sqlQuery) => {
       console.log(rows);
       callback(err, rows);
     }
+    console.log("\nConnection closed..");
   });
-  console.log("\nConnection closed..");
 };
-//   console.log("\nSQL Query::" + sqlQuery);
-
-//   connection = getConnection();
-
-//   // pool.getConnection(function (err, connection) {
-//   connection.query(sqlQuery, (err, rows) => {
-//     if (err) {
-//       console.log("ERROR: " + err.message);
-//     } else {
-//       // return err or result
-//       console.log("DB Results:");
-//       console.log(rows);
-//       callback(err, rows);
-//     }
-//   });
-//   console.log("\nConnection closed..");
-//   connection.end();
-//   //   connection.release();
-//   // });
-// };
 
 function updateData(callback, sqlQuery) {
   console.log("\nSQL Query:: " + sqlQuery);
@@ -141,7 +82,6 @@ function deleteData(callback, sqlQuery) {
   // });
 }
 
-module.exports = { fetchData };
-exports.insertData = insertData;
+module.exports = { fetchData, insertData };
 exports.updateData = updateData;
 exports.deleteData = deleteData;
