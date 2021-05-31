@@ -3,6 +3,7 @@ let path = require("path");
 let cookieParser = require("cookie-parser");
 let bodyParser = require("body-parser");
 let passport = require("passport");
+let expressSessions = require("express-session");
 
 let cors = require("cors");
 
@@ -21,6 +22,19 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(cors());
+
+// app.use(expressSessions({
+//   secret: "session",
+//   resave: false,
+//   //Forces the session to be saved back to the session store, even if the session was never modified during the request
+//   saveUninitialized: false, //force to save uninitialized session to db.
+//   //A session is uninitialized when it is new but not modified.
+//   duration: 30 * 60 * 1000,
+//   activeDuration: 5 * 6 * 1000,
+//   store: new mongoStore({
+//       url: mongoSessionURL
+//   })
+// }));
 
 app.use(passport.initialize());
 
