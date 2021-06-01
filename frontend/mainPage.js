@@ -14,10 +14,13 @@ let toUserData = () => {
 }
 
 let logOut = async() => {
-    window.localStorage.clear();
-    window.location.href = "logIn.html";
-    // let btn = document.getElementById("btn");
-    // btn.disabled = true;
+    let btn = document.getElementById("btn");
+    btn.disabled = true;
+
+    // payload = {
+    //     username: account.value,
+    //     password: password.value
+    // };
 
     // // 之後換成 kafka frontend 的 api
     // await fetch('http://localhost:3000/logout', {
@@ -36,4 +39,6 @@ let logOut = async() => {
     //     unlock_all_btn();
     // });
 
+    window.localStorage.clear();
+    window.location.href = "logIn.html";
 }

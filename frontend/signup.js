@@ -82,8 +82,8 @@ let signup = async() => {
     });
 
     if(Status === 200 || Status === 201) {
-        window.localStorage.setItem("UID", Message);
-        window.location.href = "mainPage.html";
+        window.alert("註冊成功，請重新登入");
+        window.location.href = "login.html";
     }
     else {
         window.alert(Message);
