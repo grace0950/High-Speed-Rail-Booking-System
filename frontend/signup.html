@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<link rel=stylesheet type="text/css" href="app.css">
+
+
+<html>
+    <head>
+        <script type="text/javascript" src="signup.js"></script>
+        <title>註冊</title>
+    </head>
+
+
+    <body onkeydown="keySignup();">
+        <div class="bg bg-blur"></div>
+      
+        <div class="loginPanel">
+            <h1>註冊</h1>
+            <div class="textBoxPanel">
+                <input id="account" class="textBox" type="text" placeholder="Account" />
+                <label for="account" class="entypo-account"></label>
+         
+                <input id="pwd" class="textBox" type="password" placeholder="Password" />
+                <label for="pwd" class="entypo-lock"></label>
+            
+                <input id="rpwd" class="textBox" type="password" placeholder="Repeat Password" />
+                <label for="rpwd" class="entypo-lock"></label>
+           
+                <input id="name" class="textBox" type="text" placeholder="Name" />
+            </div>
+            <!-- 之後增加 kafka frontend 需要的 -->
+            <!-- <div class="txt">
+                <input id="birthday" type="text" placeholder="Birthday" />
+            </div> -->
+
+            <!-- <div class="buttons"> -->
+            <input id = "btn" type="button" class="myButton transition" value="Sign Up" onclick="signup()">
+            <!-- </div> -->
+            <div class="txtButton transition" onclick="self.location.href='login.html'">Login</div>
+        </div>
+
+    </body>
+
+</html>
