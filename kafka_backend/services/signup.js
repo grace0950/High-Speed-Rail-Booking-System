@@ -18,12 +18,6 @@ handle_request = (data, callback) => {
       "','" +
       data.Name +
       "');";
-    let insertUserProfile =
-      "insert into user (username, Name) values ('" +
-      data.username +
-      "', '" +
-      data.Name +
-      "' );";
 
     console.log("signup - SQL Query " + insertUser);
 
