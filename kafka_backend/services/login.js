@@ -6,12 +6,6 @@ handle_request = (data, callback) => {
     status: 400,
   };
 
-  // if(data.username==="admin" && data.password==="admin"){
-  //     response.status = 201;
-  //     response.username = data.username;
-  //     response.message = "Login Credentials are correct for admin";
-  //     callback(null, response);
-  // }
   try {
     console.log("In Login");
     let sqlQuery =
@@ -25,8 +19,8 @@ handle_request = (data, callback) => {
         console.log("1: " + result.length);
 
         if (result.length === 1) {
-          console.log("Password: " + dsata.password);
-          console.log("User Password: " + reult[0].password);
+          console.log("Password: " + data.password);
+          console.log("User Password: " + result[0].password);
           //console.log(bcrypt.compareSync(data.password, result[0].password));
 
           if (data.password == result[0].password) {
