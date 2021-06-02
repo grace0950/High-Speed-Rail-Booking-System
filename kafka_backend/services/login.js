@@ -16,7 +16,7 @@ handle_request = (data, callback) => {
     console.log("In Login");
     let sqlQuery =
       "select password from user where username = '" + data.username + "'";
-    mysql.fetchData(function (err, result) {
+    mysql.fetchData(sqlQuery, function (err, result) {
       if (err) {
         console.log(err);
         callback(err, null);
@@ -25,8 +25,8 @@ handle_request = (data, callback) => {
         console.log("1: " + result.length);
 
         if (result.length === 1) {
-          console.log("Password: " + data.password);
-          console.log("User Password: " + result[0].password);
+          console.log("Password: " + dsata.password);
+          console.log("User Password: " + reult[0].password);
           //console.log(bcrypt.compareSync(data.password, result[0].password));
 
           if (data.password == result[0].password) {
@@ -44,7 +44,7 @@ handle_request = (data, callback) => {
           callback(null, response);
         }
       }
-    }, sqlQuery);
+    });
   } catch (e) {
     console.log(e);
     callback(e, response);

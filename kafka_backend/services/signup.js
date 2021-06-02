@@ -21,7 +21,7 @@ handle_request = (data, callback) => {
 
     console.log("signup - SQL Query " + insertUser);
 
-    mysql.fetchData(function (err, result) {
+    mysql.fetchData(userExist, function (err, result) {
       if (err) {
         console.log(err);
         callback(err);
@@ -33,7 +33,7 @@ handle_request = (data, callback) => {
           response.message = "User Already Exists";
           callback(null, response);
         } else {
-          mysql.insertData(function (err, result) {
+          mysql.insertData(insertUser, function (err, result) {
             if (err) {
               console.log(err);
               callback(err);
@@ -50,10 +50,10 @@ handle_request = (data, callback) => {
                 callback(null, response);
               }
             }
-          }, insertUser);
+          });
         }
       }
-    }, userExist);
+    });
   } catch (e) {
     console.log(e);
     err = e;
