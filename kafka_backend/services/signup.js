@@ -11,13 +11,15 @@ handle_request = (data, callback) => {
       "select password from user where username = '" + data.username + "'";
 
     let insertUser =
-      "insert into user (username, password) values ('" +
+      "insert into user (username, password, Name) values ('" +
       data.username +
       "','" +
       password +
+      "','" +
+      data.Name +
       "');";
     let insertUserProfile =
-      "insert into userprofile (username, Name) values ('" +
+      "insert into user (username, Name) values ('" +
       data.username +
       "', '" +
       data.Name +
@@ -44,20 +46,10 @@ handle_request = (data, callback) => {
             } else {
               console.log(result);
               if (result.affectedRows === 1) {
-                mysql.insertData(function (err, result) {
-                  if (err) {
-                    console.log(err);
-                    callback(err);
-                  } else {
-                    console.log(result);
-                    if (result.affectedRows === 1) {
-                      response.status = 200;
-                      response.username = data.username;
-                      response.message = "Signup Successful";
-                      callback(null, response);
-                    }
-                  }
-                }, insertUserProfile);
+                response.status = 200;
+                response.username = data.username;
+                response.message = "Signup Successful";
+                callback(null, response);
               } else {
                 response.status = 400;
                 response.message = "Failed to Signup";
