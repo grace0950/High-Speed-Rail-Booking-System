@@ -5,16 +5,15 @@ handle_request = (data, callback) => {
     status: 400,
   };
   try {
+    console.log("In Search");
+
+    // fetch id of start and destination of search
     let startIdQuery =
       "select id from station where name = '" + data.start + "'";
     let destinationIdQuery =
       "select id from station where name = '" + data.destination + "'";
     let startId;
     let destinationId;
-
-    console.log("In Search");
-    console.log("SQL Query :" + startIdQuery);
-    console.log("SQL Query :" + destinationIdQuery);
 
     mysql.fetchData(startIdQuery, function (err, result) {
       if (err) {
@@ -46,18 +45,39 @@ handle_request = (data, callback) => {
       }
     });
 
-    let searchQuery =
-      "SELECT year, month, day, start, destination, train_no FROM train WHERE year = " +
-      data.year +
-      " AND month = " +
-      data.month +
-      " AND day = " +
-      data.day +
-      " AND start in ( SELECT name FROM station WHERE id BETWEEN 1 AND " +
-      startId +
-      ") AND destination in (SELECT name FROM station WHERE id BETWEEN " +
-      destinationId +
-      " AND 6)";
+    // search train
+    const searchQuery = "";
+    // Southbound
+    if (startId <= destinationId) {
+      searchQuery =
+        "SELECT year, month, day, start, destination, train_no, hour, minute FROM train WHERE year = " +
+        data.year +
+        " AND month = " +
+        data.month +
+        " AND day = " +
+        data.day +
+        " AND start in ( SELECT name FROM station WHERE id BETWEEN 1 AND " +
+        startId +
+        ") AND destination in (SELECT name FROM station WHERE id BETWEEN " +
+        destinationId +
+        " AND 12)";
+    } else {
+      // Northbound
+      searchQuery =
+        "SELECT year, month, day, start, destination, train_no, hour, minute FROM train WHERE year = " +
+        data.year +
+        " AND month = " +
+        data.month +
+        " AND day = " +
+        data.day +
+        " AND destination in ( SELECT name FROM station WHERE id BETWEEN 1 AND " +
+        destinationId +
+        ") AND start in (SELECT name FROM station WHERE id BETWEEN " +
+        startId +
+        " AND 12)";
+    }
+    const priceQuery =
+      "select price from price_" + startId + " where id = " + destinationId;
 
     mysql.fetchData(searchQuery, function (err, result) {
       if (err) {
@@ -70,12 +90,31 @@ handle_request = (data, callback) => {
         if (result.length > 0) {
           response.status = 200;
           response.message = "Search Successful";
+          // ticket price
+          let _price = 0;
+          mysql.fetchData(priceQuery, function (err, _result) {
+            if (err) {
+              console.log(err);
+              callback(err, null);
+            } else {
+              if (_result.length === 1) {
+                _price = _result[0].price;
+              }
+            }
+          });
           var year = [];
           var month = [];
           var day = [];
           var start = [];
           var destination = [];
           var train_no = [];
+          var price = [];
+          var start_hour = [];
+          var start_minute = [];
+          var end_hour = [];
+          var end_minute = [];
+
+          // record all ticket information
           let index = 0;
           for (index = 0; index < result.length; index++) {
             year.push(result[index].year);
@@ -84,14 +123,78 @@ handle_request = (data, callback) => {
             start.push(result[index].start);
             destination.push(result[index].destination);
             train_no.push(result[index].train_no);
+            price.push(_price);
+
+            // calculate time of begin and end
+            //// fetch id of start station of train
+            let trainStartId;
+            let trainStartIdQuery =
+              "select id from station where name = '" +
+              result[index].start +
+              "'";
+            mysql.fetchData(trainStartIdQuery, function (err, _result) {
+              if (err) {
+                console.log(err);
+                callback(err);
+              } else {
+                console.log(_result);
+                trainStartId = _result[0].id;
+              }
+            });
+            //// fetch duration
+            let startTimeQuery =
+              "select duration from duration_" +
+              trainStartId +
+              " where id = " +
+              startId;
+            let endTimeQuery =
+              "select duration from duration_" +
+              trainStartId +
+              " where id = " +
+              destinationId;
+            mysql.fetchData(startTimeQuery, function (err, _result) {
+              if (err) {
+                console.log(err);
+                callback(err);
+              } else {
+                console.log(_result);
+                let _starthour = result[index].hour;
+                let _startminute = result[index].minute;
+                let min = _startminute + _result[0].duration;
+                _startminute = min % 60;
+                _starthour += parseInt(min / 60);
+                start_hour.push(_starthour);
+                start_minute.push(_startminute);
+              }
+            });
+            mysql.fetchData(endTimeQuery, function (err, _result) {
+              if (err) {
+                console.log(err);
+                callback(err);
+              } else {
+                console.log(_result);
+                let _endhour = result[index].hour;
+                let _endminute = result[index].minute;
+                let min = _endminute + _result[0].duration;
+                _endminute = min % 60;
+                _endhour += parseInt(min / 60);
+                end_hour.push(_endhour);
+                end_minute.push(_endminute);
+              }
+            });
           }
+          // end of for loop
           response.year = year;
           response.month = month;
           response.day = day;
           response.start = start;
           response.destination = destination;
           response.train_no = train_no;
-
+          response.price = price;
+          response.start_hour = start_hour;
+          response.start_minute = start_minute;
+          response.end_hour = end_hour;
+          response.end_minute = end_minute;
           callback(null, response);
         } else {
           response.status = 400;
