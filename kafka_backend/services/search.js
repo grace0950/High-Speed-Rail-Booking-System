@@ -178,6 +178,7 @@ handle_request = (data, callback) => {
                 let min = _endminute + _result[0].duration;
                 _endminute = min % 60;
                 _endhour += parseInt(min / 60);
+                _endhour %= 24;
                 end_hour.push(_endhour);
                 end_minute.push(_endminute);
               }
