@@ -1,6 +1,7 @@
 let mysql = require("../mysql/mysql");
+const delay = require("delay");
 
-handle_request = (data, callback) => {
+handle_request = async (data, callback) => {
   let response = {
     status: 400,
   };
@@ -15,7 +16,7 @@ handle_request = (data, callback) => {
     let startId;
     let destinationId;
 
-    mysql.fetchData(startIdQuery, function (err, result) {
+    mysql.fetchData(startIdQuery, async function (err, result) {
       if (err) {
         console.log(err);
         callback(err);
@@ -30,7 +31,9 @@ handle_request = (data, callback) => {
       }
     });
 
-    mysql.fetchData(destinationIdQuery, function (err, result) {
+    await delay(100);
+
+    mysql.fetchData(destinationIdQuery, async function (err, result) {
       if (err) {
         console.log(err);
         callback(err);
@@ -44,18 +47,19 @@ handle_request = (data, callback) => {
         }
       }
     });
+    await delay(100);
 
     // search train
-    const searchQuery = "";
+    var searchQuery = "";
     // Southbound
     if (startId <= destinationId) {
       searchQuery =
         "SELECT year, month, day, start, destination, train_no, hour, minute FROM train WHERE year = " +
-        data.year +
+        Number(data.year) +
         " AND month = " +
-        data.month +
+        Number(data.month) +
         " AND day = " +
-        data.day +
+        Number(data.day) +
         " AND start in ( SELECT name FROM station WHERE id BETWEEN 1 AND " +
         startId +
         ") AND destination in (SELECT name FROM station WHERE id BETWEEN " +
@@ -65,11 +69,11 @@ handle_request = (data, callback) => {
       // Northbound
       searchQuery =
         "SELECT year, month, day, start, destination, train_no, hour, minute FROM train WHERE year = " +
-        data.year +
+        Number(data.year) +
         " AND month = " +
-        data.month +
+        Number(data.month) +
         " AND day = " +
-        data.day +
+        Number(data.day) +
         " AND destination in ( SELECT name FROM station WHERE id BETWEEN 1 AND " +
         destinationId +
         ") AND start in (SELECT name FROM station WHERE id BETWEEN " +
@@ -77,9 +81,9 @@ handle_request = (data, callback) => {
         " AND 12)";
     }
     const priceQuery =
-      "select price from price_" + startId + " where id = " + destinationId;
+      "select price from price_" + startId + " where to_id = " + destinationId;
 
-    mysql.fetchData(searchQuery, function (err, result) {
+    mysql.fetchData(searchQuery, async function (err, result) {
       if (err) {
         console.log(err);
         callback(err, null);
@@ -92,7 +96,7 @@ handle_request = (data, callback) => {
           response.message = "Search Successful";
           // ticket price
           let _price = 0;
-          mysql.fetchData(priceQuery, function (err, _result) {
+          mysql.fetchData(priceQuery, async function (err, _result) {
             if (err) {
               console.log(err);
               callback(err, null);
@@ -102,6 +106,7 @@ handle_request = (data, callback) => {
               }
             }
           });
+          await delay(100);
           var year = [];
           var month = [];
           var day = [];
@@ -141,16 +146,17 @@ handle_request = (data, callback) => {
                 trainStartId = _result[0].id;
               }
             });
+            await delay(100);
             //// fetch duration
             let startTimeQuery =
               "select duration from duration_" +
               trainStartId +
-              " where id = " +
+              " where to_id = " +
               startId;
             let endTimeQuery =
               "select duration from duration_" +
               trainStartId +
-              " where id = " +
+              " where to_id = " +
               destinationId;
             mysql.fetchData(startTimeQuery, function (err, _result) {
               if (err) {
@@ -167,6 +173,7 @@ handle_request = (data, callback) => {
                 start_minute.push(_startminute);
               }
             });
+            await delay(100);
             mysql.fetchData(endTimeQuery, function (err, _result) {
               if (err) {
                 console.log(err);
@@ -183,6 +190,7 @@ handle_request = (data, callback) => {
                 end_minute.push(_endminute);
               }
             });
+            await delay(100);
           }
           // end of for loop
           response.year = year;

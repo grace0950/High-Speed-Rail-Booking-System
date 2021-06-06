@@ -2,6 +2,6 @@
 ############# Paths and Settings #########################
 ##########################################################
 
-KAFKA_PATH=/home/gf0927/kafka/kafka_2.13-2.8.0
+KAFKA_PATH=/home/pinyan/Kafka/kafka_2.13-2.8.0
 
 DELETE_LOGS=TRUE
