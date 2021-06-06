@@ -46,7 +46,7 @@ let login = async() => {
     let Status = 0;
     let Message = '';
     // 之後換成 kafka frontend 的 api
-    await fetch('http://localhost:3000/users/login', {
+    let res = await fetch('http://localhost:3000/users/login', {
         method: "POST",
         headers: {
             "Content-type": "application/json"
@@ -55,20 +55,19 @@ let login = async() => {
     }).then(res => {
         Status = res.status;
         return res.json();
-    }).then(jsonData => {
-        Message = jsonData.message;
-        Username = jsonData.username;
     }).catch(error => {
         Message = "Something Wrong";
         unlock_all_btn();
     });
 
+    // console.log(res);
     if(Status === 200 || Status === 201) {
-        window.localStorage.setItem("UID", Username);
+        // console.log(result);
+        window.localStorage.setItem("UID", res.username);
         window.location.href = "mainPage.html";
     }
     else {
-        window.alert(Message);
+        window.alert(res.message);
     }
     unlock_all_btn();
 
