@@ -57,13 +57,14 @@ let login = async() => {
         return res.json();
     }).then(jsonData => {
         Message = jsonData.message;
+        Username = jsonData.username;
     }).catch(error => {
         Message = "Something Wrong";
         unlock_all_btn();
     });
 
     if(Status === 200 || Status === 201) {
-        window.localStorage.setItem("UID", Message);
+        window.localStorage.setItem("UID", Username);
         window.location.href = "mainPage.html";
     }
     else {
