@@ -6,17 +6,11 @@ handle_request = (data, callback) => {
     status: 400,
   };
 
-  // if(data.username==="admin" && data.password==="admin"){
-  //     response.status = 201;
-  //     response.username = data.username;
-  //     response.message = "Login Credentials are correct for admin";
-  //     callback(null, response);
-  // }
   try {
     console.log("In Login");
     let sqlQuery =
       "select password from user where username = '" + data.username + "'";
-    mysql.fetchData(function (err, result) {
+    mysql.fetchData(sqlQuery, function (err, result) {
       if (err) {
         console.log(err);
         callback(err, null);
@@ -44,7 +38,7 @@ handle_request = (data, callback) => {
           callback(null, response);
         }
       }
-    }, sqlQuery);
+    });
   } catch (e) {
     console.log(e);
     callback(e, response);

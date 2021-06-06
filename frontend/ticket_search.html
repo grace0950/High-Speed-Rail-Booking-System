@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="ticket_search.css">
+    </head>
+    <body>
+        
+        <div class="top">
+            <form action="" method="post">
+                <p class="title">date</p>
+                <input type ="text" id = "year" placeholder="year">
+                <input type ="text" id = "month" placeholder="month">
+                <input type ="text" id = "day" placeholder="day">
+                <p class="title">start</p>
+                <select name="start" id="start_station">
+                    <option value="南港">Nangang</option>
+                    <option value="台北">Taipei</option>
+                    <option value="板橋">Banqiao</option>
+                    <option value="桃園">Taoyuan</option>
+                    <option value="新竹">Hsinchu</option>
+                    <option value="苗栗">Miaoli</option>
+                    <option value="台中">Taichung</option>
+                    <option value="彰化">Changhua</option>
+                    <option value="雲林">Yunlin</option>
+                    <option value="嘉義">Chiayi</option>
+                    <option value="台南">Tainan</option>
+                    <option value="左營">Zuoying</option>
+                </select>
+                <p class="title">destination</p>
+                <select name="destination" id="destination_station">
+                    <option value="南港">Nangang</option>
+                    <option value="台北">Taipei</option>
+                    <option value="板橋">Banqiao</option>
+                    <option value="桃園">Taoyuan</option>
+                    <option value="新竹">Hsinchu</option>
+                    <option value="苗栗">Miaoli</option>
+                    <option value="台中">Taichung</option>
+                    <option value="彰化">Changhua</option>
+                    <option value="雲林">Yunlin</option>
+                    <option value="嘉義">Chiayi</option>
+                    <option value="台南">Tainan</option>
+                    <option value="左營">Zuoying</option>
+                </select>
+                <br>
+                <input type="button" value="search" onclick="Filter()">
+            </form>
+        </div>
+        <div id="root"></div>
+
+        <script src="ticket_search.js"></script>
+    </body>
+</html>

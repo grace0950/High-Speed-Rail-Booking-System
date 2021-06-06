@@ -13,7 +13,7 @@ const pool = mysql.createPool({
   port: 3306,
 });
 
-const insertData = (callback, sqlQuery) => {
+const insertData = (sqlQuery, callback) => {
   console.log("\nSQL Query:: " + sqlQuery);
   pool.query(sqlQuery, (err, result) => {
     if (err) {
@@ -27,7 +27,7 @@ const insertData = (callback, sqlQuery) => {
   });
 };
 
-const fetchData = (callback, sqlQuery) => {
+const fetchData = (sqlQuery, callback) => {
   console.log("\nSQL Query::" + sqlQuery);
   pool.query(sqlQuery, (err, rows) => {
     if (err) {
@@ -42,7 +42,7 @@ const fetchData = (callback, sqlQuery) => {
   });
 };
 
-function updateData(callback, sqlQuery) {
+function updateData(sqlQuery, callback) {
   console.log("\nSQL Query:: " + sqlQuery);
 
   connection = getConnection();
@@ -63,7 +63,7 @@ function updateData(callback, sqlQuery) {
   // });
 }
 
-function deleteData(callback, sqlQuery) {
+function deleteData(sqlQuery, callbacky) {
   console.log("\nSQL Query:: " + sqlQuery);
   connection = getConnection();
   // pool.getConnection(function (err, connection) {
