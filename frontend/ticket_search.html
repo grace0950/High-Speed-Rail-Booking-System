@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="ticket_search.css">
+    </head>
+    <body>
+        
+        <div class="top">
+            <form action="" method="post">
+                <p class="title">date</p>
+                <input type ="text" id = "year" placeholder="year">
+                <input type ="text" id = "month" placeholder="month">
+                <input type ="text" id = "day" placeholder="day">
+                <p class="title">start</p>
+                <select name="start" id="start_station">
+                    <option value="Nangang">Nangang</option>
+                    <option value="Taipei">Taipei</option>
+                    <option value="Banqiao">Banqiao</option>
+                    <option value="Taoyuan">Taoyuan</option>
+                    <option value="Hsinchu">Hsinchu</option>
+                    <option value="Miaoli">Miaoli</option>
+                    <option value="Taichung">Taichung</option>
+                    <option value="Changhua">Changhua</option>
+                    <option value="Yunlin">Yunlin</option>
+                    <option value="Chiayi">Chiayi</option>
+                    <option value="Tainan">Tainan</option>
+                    <option value="Zuoying">Zuoying</option>
+                </select>
+                <p class="title">destination</p>
+                <select name="destination" id="destination_station">
+                    <option value="Nangang">Nangang</option>
+                    <option value="Taipei">Taipei</option>
+                    <option value="Banqiao">Banqiao</option>
+                    <option value="Taoyuan">Taoyuan</option>
+                    <option value="Hsinchu">Hsinchu</option>
+                    <option value="Miaoli">Miaoli</option>
+                    <option value="Taichung">Taichung</option>
+                    <option value="Changhua">Changhua</option>
+                    <option value="Yunlin">Yunlin</option>
+                    <option value="Chiayi">Chiayi</option>
+                    <option value="Tainan">Tainan</option>
+                    <option value="Zuoying">Zuoying</option>
+                </select>
+                <br>
+                <input type="button" value="search" onclick="Filter()">
+            </form>
+        </div>
+        <div id="root"></div>
+
+        <script src="ticket_search.js"></script>
+    </body>
+</html>
