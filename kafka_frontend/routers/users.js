@@ -77,23 +77,23 @@ router.post("/search", function (req, res) {
       } else {
         if (results.status === 200) {
           res.status(results.status).send({
-            message: response.message,
-            year: response.year,
-            month: response.month,
-            day: response.day,
-            start: response.start,
-            destination: response.destination,
-            train_no: response.train_no,
-            price: response.price,
-            start_hour: response.start_hour,
-            start_minute: response.start_minute,
-            end_hour: response.end_hour,
-            end_minute: response.end_minute,
+            message: results.message,
+            year: results.year,
+            month: results.month,
+            day: results.day,
+            start: results.start,
+            destination: results.destination,
+            train_no: results.train_no,
+            price: results.price,
+            start_hour: results.start_hour,
+            start_minute: results.start_minute,
+            end_hour: results.end_hour,
+            end_minute: results.end_minute,
           });
         } else if (results.status == 401) {
-          res.status(results.status).send({ message: response.message });
+          res.status(results.status).send({ message: results.message });
         } else if (results.status === 400) {
-          res.status(results.status).send({ message: response.message });
+          res.status(results.status).send({ message: results.message });
         }
       }
     });
