@@ -48,49 +48,43 @@ let Filter = async () => {
   } else if (Status === 400) window.alert(res.json().message);
   else window.alert("Filter Failed");
 };
-function show_ticket(response) {
-  var data = JSON.parse(response);
+function show_ticket(info){
+    
+  let start = document.getElementById("start_station");
+  let destination = document.getElementById("destination_station");
+          console.log(info.original_title);
+          let ii = 0;
+          for(ii = 0;ii<info.year.length;ii++){
+              const card = document.createElement("div")
 
-  data.forEach((info) => {
-    console.log(info.original_title);
+              card.setAttribute('class','card')
+              
+              //set the content
+              const h1 = document.createElement('h1')
+              //h1.textContent = info.original_title
+              h1.textContent = info.year[ii]+"/"+info.month[ii]+"/"+info.day[ii]
+              const h2 = document.createElement('h2')
+              //h2.textContent = info.running_time
+              h2.textContent = start+"->"+destination
+              const h3 = document.createElement('h3')
+              h3.textContent = info.train_no[ii]+" "+info.price[ii]
+              const p = document.createElement('p')
+              //p.textContent = info.description
+              p.textContent = info.start_hour[ii]+":"+info.start_minute[ii]+"->"+info.end_hour[ii]+":"+info.end_minute[ii]
 
-    const card = document.createElement("div");
+              card.appendChild(h1)
+              card.appendChild(h2)
+              card.appendChild(h3)
+              card.appendChild(p)
+              container.appendChild(card)
 
-    card.setAttribute("class", "card");
-
-    //set the content
-    const h1 = document.createElement("h1");
-    //h1.textContent = info.original_title
-    h1.textContent = info.year + "/" + info.month + "/" + info.day;
-    const h2 = document.createElement("h2");
-    //h2.textContent = info.running_time
-    h2.textContent = info.start + "->" + info.destination;
-    const h3 = document.createElement("h3");
-    h3.textContent = info.train_no + " " + info.price;
-    const p = document.createElement("p");
-    //p.textContent = info.description
-    p.textContent =
-      info.start_hour +
-      ":" +
-      info.start_minute +
-      "->" +
-      info.end_hour +
-      ":" +
-      info.end_minute;
-
-    card.appendChild(h1);
-    card.appendChild(h2);
-    card.appendChild(h3);
-    card.appendChild(p);
-    container.appendChild(card);
-
-    card.onclick = function () {
-      window.sessionStorage.setItem("ordering_num", h2.textContent);
-      window.location.href = "ordering.html";
-      window.alert("Yeah");
-      console.log("success");
-    };
-  });
+              card.onclick = function(){
+                  window.sessionStorage.setItem('ordering_num',h3.textContent)
+                  window.location.href = "ordering.html";
+                  window.alert("Yeah")
+                  console.log("success")
+              }
+          }
 }
 const app = document.getElementById("root");
 const container = document.createElement("div");
