@@ -25,11 +25,16 @@ router.post("/login", function (req, res) {
       console.log(err);
       res.status(400).send();
     }
-    if (response.status === 200) {  // correct
-      res.status(response.status).send({ message: response.message, username: response.username});
-    } else if (response.status === 400) {  // username does not exist
+    if (response.status === 200) {
+      // correct
+      res
+        .status(response.status)
+        .send({ message: response.message, username: response.username });
+    } else if (response.status === 400) {
+      // username does not exist
       res.status(response.status).send({ message: response.message });
-    } else {  // pwd incorrect
+    } else {
+      // pwd incorrect
       res.status(401).send({ message: "Login Failed" });
     }
   })(req, res);
@@ -62,16 +67,16 @@ router.post("/signup", function (req, res, next) {
   }
 });
 
-router.post("/search", function(req, res){
+router.post("/search", function (req, res) {
   console.log(req.body);
-  try{
-    kafka.make_request("search_topic", req.body, function(err, results){
-      if(err){
+  try {
+    kafka.make_request("search_topic", req.body, function (err, results) {
+      if (err) {
         console.log(err);
         throw err;
-      }else{
-        if(results.status === 200){
-          res.status(response.status).send({
+      } else {
+        if (results.status === 200) {
+          res.status(results.status).send({
             message: response.message,
             year: response.year,
             month: response.month,
@@ -83,18 +88,18 @@ router.post("/search", function(req, res){
             start_hour: response.start_hour,
             start_minute: response.start_minute,
             end_hour: response.end_hour,
-            end_minute: response.end_minute
+            end_minute: response.end_minute,
           });
-        }else if(results.status == 401){
-          res.status(results.status).send({ message: "Search Failed" });
-        }else if(results.status === 400){
-          res.status(results.status).send({ message: "Search Failed" });
+        } else if (results.status == 401) {
+          res.status(results.status).send({ message: response.message });
+        } else if (results.status === 400) {
+          res.status(results.status).send({ message: response.message });
         }
       }
     });
-  } catch(e){
+  } catch (e) {
     console.log(e);
-    res.status(400).json({message: "Search Failed"})
+    res.status(400).json({ message: "Search Failed" });
   }
 });
 
