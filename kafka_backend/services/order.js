@@ -46,6 +46,7 @@ handle_request = (data, callback) => {
         if (result.length === 1) {
           response.status = 200;
           response.message = "Order Completed";
+          response.id = randomId;
           callback(null, response);
         } else {
           response.status = 400;
