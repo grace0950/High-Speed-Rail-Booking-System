@@ -31,7 +31,7 @@ handle_request = async (data, callback) => {
       }
     });
 
-    await delay(100);
+    await delay(20);
 
     mysql.fetchData(destinationIdQuery, async function (err, result) {
       if (err) {
@@ -47,7 +47,7 @@ handle_request = async (data, callback) => {
         }
       }
     });
-    await delay(100);
+    await delay(20);
 
     // search train
     var searchQuery = "";
@@ -106,7 +106,7 @@ handle_request = async (data, callback) => {
               }
             }
           });
-          await delay(100);
+          await delay(20);
           var year = [];
           var month = [];
           var day = [];
@@ -146,7 +146,7 @@ handle_request = async (data, callback) => {
                 trainStartId = _result[0].id;
               }
             });
-            await delay(100);
+            await delay(20);
             //// fetch duration
             let startTimeQuery =
               "select duration from duration_" +
@@ -173,7 +173,7 @@ handle_request = async (data, callback) => {
                 start_minute.push(_startminute);
               }
             });
-            await delay(100);
+            await delay(20);
             mysql.fetchData(endTimeQuery, function (err, _result) {
               if (err) {
                 console.log(err);
@@ -190,7 +190,7 @@ handle_request = async (data, callback) => {
                 end_minute.push(_endminute);
               }
             });
-            await delay(100);
+            await delay(20);
           }
           // end of for loop
           response.year = year;
