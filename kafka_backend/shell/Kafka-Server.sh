@@ -9,9 +9,9 @@ gnome-terminal -e 'bash -c "bash Server-Creation.sh;exec bash"'
 ${KAFKA_PATH}/bin/kafka-topics.sh --create --topic login_topic --bootstrap-server localhost:9092
 ${KAFKA_PATH}/bin/kafka-topics.sh --create --topic response_topic --bootstrap-server localhost:9092
 ${KAFKA_PATH}/bin/kafka-topics.sh --create --topic signup_topic --bootstrap-server localhost:9092
-#${KAFKA_PATH}/bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic login_topic
-#${KAFKA_PATH}/bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic response_topic
-#${KAFKA_PATH}/bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic signup_topic
+${KAFKA_PATH}/bin/kafka-topics.sh --create --topic search_topic --bootstrap-server localhost:9092
+${KAFKA_PATH}/bin/kafka-topics.sh --create --topic order_topic --bootstrap-server localhost:9092
+${KAFKA_PATH}/bin/kafka-topics.sh --create --topic searchOrder_topic --bootstrap-server localhost:9092
 
 
 echo "Topic Created Success!"
