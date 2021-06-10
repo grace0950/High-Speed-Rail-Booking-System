@@ -51,21 +51,30 @@ let Filter = async () => {
 function show_ticket(info, start, destination) {
   let i = 0;
   for (i = 0; i < info.year.length; i++) {
+    let year =  info.year[i];
+    let month = info.month[i];
+    let day = info.day[i];
+    let start = info.start[i];
+    let destination = info.destination[i];
+    let train_no = info.train_no[i];
+    let price = info.price[i];
+    let start_hour = info.start_hour[i];
+    let start_minute = info.start_minute[i]
+    let end_hour = info.end_hour[i];
+    let end_minute = info.end_minute[i];
+
     const card = document.createElement("div");
 
     card.setAttribute("class", "card");
 
     //set the content
-    const h1 = document.createElement("h1");
+    const h1 = document.createElement("p");
     //h1.textContent = info.original_title
     h1.textContent = info.year[i] + "/" + info.month[i] + "/" + info.day[i];
-    const h2 = document.createElement("h2");
+    const h2 = document.createElement("h1");
     //h2.textContent = info.running_time
     h2.textContent = start + "->" + destination;
-    const h3 = document.createElement("h3");
-    h3.textContent = info.train_no[i] + " " + info.price[i];
-    const p = document.createElement("p");
-    //p.textContent = info.description
+    const p = document.createElement("h2");
     p.textContent =
       info.start_hour[i] +
       ":" +
@@ -74,6 +83,9 @@ function show_ticket(info, start, destination) {
       info.end_hour[i] +
       ":" +
       info.end_minute[i];
+    const h3 = document.createElement("h3");
+    h3.textContent = info.train_no[i] + " " + info.price[i];
+    
 
     card.appendChild(h1);
     card.appendChild(h2);
@@ -82,17 +94,17 @@ function show_ticket(info, start, destination) {
     container.appendChild(card);
 
     card.onclick = function () {
-      window.localStorage.setItem("year", info.year[i]);
-      window.localStorage.setItem("month", info.month[i]);
-      window.localStorage.setItem("day", info.day[i]);
-      window.localStorage.setItem("start", info.start[i]);
-      window.localStorage.setItem("destination", info.destination[i]);
-      window.localStorage.setItem("train_no", info.train_no[i]);
-      window.localStorage.setItem("price", info.price[i]);
-      window.localStorage.setItem("start_hour", info.start_hour[i]);
-      window.localStorage.setItem("start_minute", info.start_minute[i]);
-      window.localStorage.setItem("end_hour", info.end_hour[i]);
-      window.localStorage.setItem("end_minute", info.end_minute[i]);
+      window.localStorage.setItem("year", year);
+      window.localStorage.setItem("month", month);
+      window.localStorage.setItem("day", day);
+      window.localStorage.setItem("start", start);
+      window.localStorage.setItem("destination", destination);
+      window.localStorage.setItem("train_no", train_no);
+      window.localStorage.setItem("price", price);
+      window.localStorage.setItem("start_hour", start_hour);
+      window.localStorage.setItem("start_minute", start_minute);
+      window.localStorage.setItem("end_hour", end_hour);
+      window.localStorage.setItem("end_minute", end_minute);
       window.location.href = "ordering.html";
       window.alert("Yeah");
       console.log("success");
