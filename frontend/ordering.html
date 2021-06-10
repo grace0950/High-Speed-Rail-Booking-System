@@ -8,21 +8,19 @@
             
         </div>
         <div class="information">
-            <form action="ordering" method="post">
-                <p class="title">ordering_number:</p>
-                <span id = "ordering_num" >hi</span>
-                <p class="title">Name:</p>
-                <input type="text" name="name" id="name" placeholder="name">
-                <p class="title">E-mail:</p>
-                <input type="email" name="e-mail" id="e-mail" placeholder="e-meil">
-                <p class="title">cellphone:</p>
-                <input type="text" name="cellphone" id="cellphone" placeholder="cellphone">
-                <p class="title">account:</p>
-                <input type="text" name="account" id="account" placeholder="account"><br>
-
-                <input type="button" value="order" onclick="order()">
-            </form>
+            <p>姓名 ： </p>
+            <p id="username"></p>
+            <p>日期 ： </p>
+            <p id="date"></p>
+            <p>時間 ： </p>
+            <p id="time"></p>
+            <p id="position"></p>
+            <p>車次 ： </p>
+            <p id="train_no"></p>
+            <p>價錢 ： </p>
+            <p id="price"></p>
         </div>
+        <input type="button" name="確認" onclick="order()">
         <script src="ordering.js"></script>
     </body>
 </html>

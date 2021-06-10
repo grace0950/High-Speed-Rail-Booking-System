@@ -82,7 +82,17 @@ function show_ticket(info, start, destination) {
     container.appendChild(card);
 
     card.onclick = function () {
-      window.sessionStorage.setItem("ordering_num", h3.textContent);
+      window.sessionStorage.setItem('year',info.year[ii])
+      window.sessionStorage.setItem('month',info.month[ii])
+      window.sessionStorage.setItem('day',info.day[ii])
+      window.sessionStorage.setItem('start',info.start[ii])
+      window.sessionStorage.setItem('destination',info.destination[ii])
+      window.sessionStorage.setItem('train_no',info.train_no[ii])
+      window.sessionStorage.setItem('price',info.price[ii])
+      window.sessionStorage.setItem('start_hour',info.start_hour[ii])
+      window.sessionStorage.setItem('start_minute',info.start_minute[ii])
+      window.sessionStorage.setItem('end_hour',info.end_hour[ii])
+      window.sessionStorage.setItem('end_minute',info.end_minute[ii])
       window.location.href = "ordering.html";
       window.alert("Yeah");
       console.log("success");
