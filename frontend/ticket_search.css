@@ -25,7 +25,7 @@
 }
 .card {
     position: relative;
-    height: 200px;
+    /*height: 200px;*/
     width: 1000px;
     border-top-left-radius:20px;
     border-top-right-radius:20px; 

@@ -82,17 +82,17 @@ function show_ticket(info, start, destination) {
     container.appendChild(card);
 
     card.onclick = function () {
-      window.sessionStorage.setItem('year',info.year[ii])
-      window.sessionStorage.setItem('month',info.month[ii])
-      window.sessionStorage.setItem('day',info.day[ii])
-      window.sessionStorage.setItem('start',info.start[ii])
-      window.sessionStorage.setItem('destination',info.destination[ii])
-      window.sessionStorage.setItem('train_no',info.train_no[ii])
-      window.sessionStorage.setItem('price',info.price[ii])
-      window.sessionStorage.setItem('start_hour',info.start_hour[ii])
-      window.sessionStorage.setItem('start_minute',info.start_minute[ii])
-      window.sessionStorage.setItem('end_hour',info.end_hour[ii])
-      window.sessionStorage.setItem('end_minute',info.end_minute[ii])
+      window.localStorage.setItem("year", info.year[i]);
+      window.localStorage.setItem("month", info.month[i]);
+      window.localStorage.setItem("day", info.day[i]);
+      window.localStorage.setItem("start", info.start[i]);
+      window.localStorage.setItem("destination", info.destination[i]);
+      window.localStorage.setItem("train_no", info.train_no[i]);
+      window.localStorage.setItem("price", info.price[i]);
+      window.localStorage.setItem("start_hour", info.start_hour[i]);
+      window.localStorage.setItem("start_minute", info.start_minute[i]);
+      window.localStorage.setItem("end_hour", info.end_hour[i]);
+      window.localStorage.setItem("end_minute", info.end_minute[i]);
       window.location.href = "ordering.html";
       window.alert("Yeah");
       console.log("success");
