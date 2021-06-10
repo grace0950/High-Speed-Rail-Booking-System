@@ -4,6 +4,7 @@ if(username == null){
 }
 document.getElementById("username").innerHTML = username;
 
+
 var date = '0000'
 
 if((window.localStorage.getItem('year')!=null)&&(window.localStorage.getItem('month')!=null)&&(window.localStorage.getItem('day')!=null)){
