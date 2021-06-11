@@ -33,7 +33,7 @@ handle_request = (data, callback) => {
       ", '" +
       data.username +
       "', " +
-      data_price +
+      data.price +
       ")";
 
     mysql.insertData(orderQuery, function (err, result) {
@@ -41,9 +41,8 @@ handle_request = (data, callback) => {
         console.log(err);
         callback(err);
       } else {
-        console.log(result);
-        console.log(result.length);
-        if (result.length === 1) {
+        console.log(result.affectedRows);
+        if (result.affectedRows === 1) {
           response.status = 200;
           response.message = "Order Completed";
           response.id = randomId;

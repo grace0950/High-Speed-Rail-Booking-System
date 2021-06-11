@@ -29,7 +29,11 @@ router.post("/login", function (req, res) {
       // correct
       res
         .status(response.status)
-        .send({ message: response.message, username: response.username });
+        .send({
+          message: response.message,
+          username: response.username,
+          name: response.name,
+        });
     } else if (response.status === 400) {
       // username does not exist
       res.status(response.status).send({ message: response.message });
@@ -66,6 +70,5 @@ router.post("/signup", function (req, res, next) {
     res.status(400).json({ message: "Signup Failed" });
   }
 });
-
 
 module.exports = router;

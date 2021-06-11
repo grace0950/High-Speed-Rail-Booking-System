@@ -9,7 +9,9 @@ handle_request = (data, callback) => {
   try {
     console.log("In Login");
     let sqlQuery =
-      "select password from user where username = '" + data.username + "'";
+      "select password, Name from user where username = '" +
+      data.username +
+      "'";
     mysql.fetchData(sqlQuery, function (err, result) {
       if (err) {
         console.log(err);
@@ -26,6 +28,7 @@ handle_request = (data, callback) => {
           if (data.password == result[0].password) {
             response.status = 200;
             response.username = data.username;
+            response.name = result[0].Name;
             response.message = "User Login Credentials are correct";
           } else {
             response.message = "Password is incorrect. Please try again";
