@@ -76,7 +76,7 @@ let order = async() => {
         end_minute : end_minute.value,
         username : username.value
     };
-    let res = await fetch('http://localhost:3000/users/order', {
+    let res = await fetch('http://localhost:3000/search_order/order', {
         method: "POST",
         headers: {
             "Content-type": "application/json"

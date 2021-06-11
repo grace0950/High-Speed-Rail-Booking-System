@@ -27,7 +27,7 @@ let Filter = async () => {
     start: start.value,
     destination: destination.value,
   };
-  let res = await fetch("http://localhost:3000/users/search", {
+  let res = await fetch("http://localhost:3000/search_order/search", {
     method: "POST",
     headers: {
       "Content-type": "application/json",
