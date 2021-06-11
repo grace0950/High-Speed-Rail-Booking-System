@@ -109,7 +109,7 @@ async function deleteOrder(id) {
 
   if (Status === 200) {
     window.alert("Success");
-    Filter();
+    location.reload();
   } else {
     window.alert(res.message);
   }
