@@ -84,7 +84,7 @@ function show_ticket(info, start, destination) {
       ":" +
       info.end_minute[i];
     const h3 = document.createElement("h3");
-    h3.textContent = info.train_no[i] + " " + info.price[i];
+    h3.textContent = "車次： "+info.train_no[i] + " 價錢： " + info.price[i];
 
     card.appendChild(h1);
     card.appendChild(h2);
