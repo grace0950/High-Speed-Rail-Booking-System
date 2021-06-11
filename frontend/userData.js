@@ -7,7 +7,7 @@ window.onload = () => {
     }
     const username = window.localStorage.getItem("UID");
     document.getElementById("username").innerHTML = "帳號: " + username;
-    document.getElementById("name").innerHTML = "姓名: " + "rweq";
+    document.getElementById("name").innerHTML = "姓名: " + "Name";
 }
 
 let back = () => {

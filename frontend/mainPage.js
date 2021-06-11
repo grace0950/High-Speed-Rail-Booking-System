@@ -9,12 +9,16 @@ window.onload = () => {
     document.getElementById("header").innerHTML = "歡迎"+name
 }
 
-let toUserData = () => {
-    window.location.href = "userData.html";
+let toTicketSearch = () => {
+    window.location.href = "ticket_search.html";
 }
 
 let toSearchOrder = () => {
     window.location.href = "searchOrder.html";
+}
+
+let toUserData = () => {
+    window.location.href = "userData.html";
 }
 
 let logOut = async() => {
