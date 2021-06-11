@@ -6,8 +6,8 @@ window.onload = () => {
         window.location.href = "logIn.html";
     }
     const username = window.localStorage.getItem("UID");
-    document.getElementById("username").innerHTML = "帳號: " + username;
-    document.getElementById("name").innerHTML = "姓名: " + "Name";
+    document.getElementById("username").innerHTML = username;
+    document.getElementById("name").innerHTML = "Name";
 }
 
 let back = () => {
