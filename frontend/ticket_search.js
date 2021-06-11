@@ -2,7 +2,6 @@ function Return(){
   window.location.href = "mainPage.html"
 }
 let Filter = async () => {
-  location.reload();
   let year = document.getElementById("year");
   let month = document.getElementById("month");
   let day = document.getElementById("day");
