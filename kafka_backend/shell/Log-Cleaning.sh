@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Your local kafka location
-KAFKA=/home/absnormal/大學/DS_2021/kafka_2.13-2.8.0/
+KAFKA=/home/pinyan/Kafka/kafka_2.13-2.8.0/
 
 # Go to local kafka
 cd $KAFKA

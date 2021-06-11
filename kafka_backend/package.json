@@ -10,7 +10,6 @@
     "async": "latest",
     "crypto": "^1.0.1",
     "delay": "^5.0.0",
-    "elasticsearch": "^14.0.0",
     "kafka-node": "^5.0.0",
     "mysql": "^2.15.0"
   },

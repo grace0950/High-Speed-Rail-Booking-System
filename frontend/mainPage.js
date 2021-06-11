@@ -13,6 +13,10 @@ let toUserData = () => {
     window.location.href = "userData.html";
 }
 
+let toSearchOrder = () => {
+    window.location.href = "searchOrder.html";
+}
+
 let logOut = async() => {
     let btn = document.getElementById("btn");
     btn.disabled = true;
