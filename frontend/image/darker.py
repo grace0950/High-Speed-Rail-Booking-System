@@ -1,11 +1,21 @@
 import cv2
 import numpy as np
 
-img_ori = cv2.imread("searchBtn-edit.jpg")
-print(img_ori.shape)
-h, w = img_ori.shape[:2]
+img_ori = cv2.imread("ticket.jpg", cv2.IMREAD_GRAYSCALE)
+# print(img_ori.shape)
+img_ori = img_ori.astype(int)
+h, w = img_ori.shape
+img_out = np.zeros((h, w), dtype=int)
+# img_out = cv2.cvtColor(img_ori, cv2.COLOR_BGR2YCrCb)
+img_out = img_ori - 75
+img_out = np.clip(img_out, 0, 255)
+# img_out = cv2.cvtColor(img_ori, cv2.COLOR_YCrCb2BGR)
+# img_out[:, :, 0] = 128 - img_ori[:, :, 0]
+# img_out[:, :, 1] = 128 - img_ori[:, :, 1]
+# img_out[:, :, 2] = 128 - img_ori[:, :, 2]
+# img_out = 255 - img_ori
+# cv2.GaussianBlur(img_ori, (27, 27), 1, img_out)
 
 
-img_out = cv2.resize(img_ori, (WIDTH, int(img_ori.shape[0]*(WIDTH/img_ori.shape[1]))), interpolation=cv2.INTER_CUBIC)
 print(img_out.shape)
-cv2.imwrite("searchBtn-edit-dark.jpg", img_out)
+cv2.imwrite("ticket_dark.jpg", img_out)

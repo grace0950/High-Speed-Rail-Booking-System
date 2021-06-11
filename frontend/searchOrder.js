@@ -20,7 +20,7 @@ let Filter = async () => {
     payload = {
         username: name
     };
-    let res = await fetch("http://localhost:3000/users/searchOrder", {
+    let res = await fetch("http://localhost:3000/search_order/searchOrder", {
         method: "POST",
         headers: {
             "Content-type": "application/json",
