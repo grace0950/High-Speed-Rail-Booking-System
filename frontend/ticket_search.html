@@ -7,9 +7,24 @@
         <div class="top">
             <form action="" method="post">
                 <p class="title">date</p>
-                <input type ="text" id = "year" placeholder="year">
-                <input type ="text" id = "month" placeholder="month">
-                <input type ="text" id = "day" placeholder="day">
+                <!-- <input type ="text" id = "year" placeholder="year"> -->
+                <!-- <input type ="text" id = "month" placeholder="month"> -->
+                <!-- <input type ="text" id = "day" placeholder="day"> -->
+                <select name="year" id="year">
+                    <option value="2021">2021</option>
+                </select>
+                <select name="month" id="month">
+                    <option value="06">06</option>
+                </select>
+                <select name="day" id="day">
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                </select>
                 <p class="title">start</p>
                 <select name="start" id="start_station">
                     <option value="南港">南港</option>
@@ -40,12 +55,11 @@
                     <option value="台南">台南</option>
                     <option value="左營">左營</option>
                 </select>
-                <br>
+                <br><br><br>
                 <input type="button" value="search" onclick="Filter()">
             </form>
         </div>
         <div id="root"></div>
-
         <script src="ticket_search.js"></script>
     </body>
 </html>
