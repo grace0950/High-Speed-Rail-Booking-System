@@ -46,6 +46,7 @@ let Filter = async () => {
 function show_ticket(info) {
   let i = 0;
   for (i = 0; i < info.year.length; i++) {
+    let id = info.id[i]
     const card = document.createElement("div");
     card.setAttribute("class", "card");
 
@@ -79,15 +80,15 @@ function show_ticket(info) {
 
     card.onclick = function () {
       let yes = window.confirm("確定刪除?");
-      if (yes) deleteOrder();
+      if (yes) deleteOrder(id);
     };
   }
 }
 
-async function deleteOrder() {
+async function deleteOrder(id) {
   let payload = {
     username: window.localStorage.getItem("UID"),
-    id: window.localStorage.getItem(),
+    id: window.localStorage.getItem(id),
   };
 
   let res = await fetch("http://localhost:3000/search_order/deleteOrder", {
