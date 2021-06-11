@@ -12,7 +12,7 @@ handle_request = (data, callback) => {
       data.username +
       "'";
 
-    mysql.delete(deleteOrderQuery, function (err, result) {
+    mysql.deleteData(deleteOrderQuery, function (err, result) {
       if (err) {
         console.log(err);
         callback(err);

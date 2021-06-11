@@ -74,25 +74,23 @@ function show_ticket(info) {
     card.appendChild(h3);
     card.appendChild(p);
     container.appendChild(card);
-    // window.localStorage.setItem(info.id[i], info.id[i]);
+    window.localStorage.setItem(info.id[i], info.id[i]);
     console.log(card);
-
 
     card.onclick = function () {
       let yes = window.confirm("確定刪除?");
-      if(yes) deleteOrder(info.id[i])
+      if (yes) deleteOrder();
     };
   }
 }
 
-function deleteOrder(id) {
+async function deleteOrder() {
   let payload = {
     username: window.localStorage.getItem("UID"),
-    id: info.id[i]
+    id: window.localStorage.getItem(),
   };
 
-
-  let res = await fetch("http://localhost:3000/deleteOrder/searchOrder", {
+  let res = await fetch("http://localhost:3000/search_order/deleteOrder", {
     method: "POST",
     headers: {
       "Content-type": "application/json",
@@ -108,14 +106,12 @@ function deleteOrder(id) {
       window.alert(error);
     });
 
-    if(Status === 200){
-      window.alert("Success");
-      Filter();
-    }
-    else{
-      window.alert(res.message);
-    }
-    
+  if (Status === 200) {
+    window.alert("Success");
+    Filter();
+  } else {
+    window.alert(res.message);
+  }
 }
 
 const app = document.getElementById("root");
