@@ -24,7 +24,7 @@ document.getElementById("position").innerHTML = position;
 var train_no = '0000'
 
 if((window.localStorage.getItem('train_no')!=null)){
-    position = window.localStorage.getItem('train_no')
+    train_no = window.localStorage.getItem('train_no')
 }
 
 document.getElementById("train_no").innerHTML = train_no;
@@ -32,7 +32,7 @@ document.getElementById("train_no").innerHTML = train_no;
 var price = '0000'
 
 if((window.localStorage.getItem('price')!=null)){
-    position = window.localStorage.getItem('price')
+    price = window.localStorage.getItem('price')
 }
 
 document.getElementById("price").innerHTML = price;
