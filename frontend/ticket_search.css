@@ -52,8 +52,7 @@ body{
     color: #ec8a8a;
     padding: 20px 100px 20px 100px; 
     top: 0px;
-    
-    background: url('image/HSR_logo.png');
+    background-image: url('image/HSR_logo.png');
     background-position-y: 90%;
     background-position-x: right;
     background-size: 50%;
