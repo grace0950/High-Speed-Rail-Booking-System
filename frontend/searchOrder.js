@@ -110,8 +110,12 @@ function deleteOrder(id) {
 
     if(Status === 200){
       window.alert("Success");
+      Filter();
     }
-    Filter();
+    else{
+      window.alert(res.message);
+    }
+    
 }
 
 const app = document.getElementById("root");
