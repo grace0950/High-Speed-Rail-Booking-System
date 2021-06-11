@@ -74,13 +74,44 @@ function show_ticket(info) {
     card.appendChild(h3);
     card.appendChild(p);
     container.appendChild(card);
+    // window.localStorage.setItem(info.id[i], info.id[i]);
     console.log(card);
 
+
     card.onclick = function () {
-      window.sessionStorage.setItem("ordering_num", h3.textContent);
-      window.alert("訂單無法刪除");
+      let yes = window.confirm("確定刪除?");
+      if(yes) deleteOrder(info.id[i])
     };
   }
+}
+
+function deleteOrder(id) {
+  let payload = {
+    username: window.localStorage.getItem("UID"),
+    id: info.id[i]
+  };
+
+
+  let res = await fetch("http://localhost:3000/deleteOrder/searchOrder", {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  })
+    .then((res) => {
+      Status = res.status;
+      console.log(Status);
+      return res.json();
+    })
+    .catch((error) => {
+      window.alert(error);
+    });
+
+    if(Status === 200){
+      window.alert("Success");
+    }
+    Filter();
 }
 
 const app = document.getElementById("root");
