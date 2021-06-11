@@ -42,13 +42,9 @@ const fetchData = (sqlQuery, callback) => {
   });
 };
 
-function updateData(sqlQuery, callback) {
+const deleteData = (sqlQuery, callback) => {
   console.log("\nSQL Query:: " + sqlQuery);
-
-  connection = getConnection();
-
-  // pool.getConnection(function (err, connection) {
-  connection.query(sqlQuery, function (err, result) {
+  pool.query(sqlQuery, (err, result) => {
     if (err) {
       console.log("ERROR: " + err.message);
     } else {
@@ -56,32 +52,8 @@ function updateData(sqlQuery, callback) {
       console.log("DB Results:" + result.affectedRows);
       callback(err, result);
     }
+    console.log("\nConnection closed..");
   });
-  console.log("\nConnection closed..");
-  connection.end();
-  // connection.release()
-  // });
-}
+};
 
-function deleteData(sqlQuery, callbacky) {
-  console.log("\nSQL Query:: " + sqlQuery);
-  connection = getConnection();
-  // pool.getConnection(function (err, connection) {
-  connection.query(sqlQuery, function (err, result) {
-    if (err) {
-      console.log("ERROR: " + err.message);
-    } else {
-      // return err or result
-      console.log("DB Results:" + result.affectedRows);
-      callback(err, result);
-    }
-  });
-  console.log("\nConnection closed..");
-  connection.end();
-  // connection.release()
-  // });
-}
-
-module.exports = { fetchData, insertData };
-exports.updateData = updateData;
-exports.deleteData = deleteData;
+module.exports = { fetchData, insertData, deleteData };
