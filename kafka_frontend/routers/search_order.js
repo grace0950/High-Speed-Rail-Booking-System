@@ -108,4 +108,27 @@ router.post("/searchOrder", function (req, res) {
   }
 });
 
+router.post("/deleteOrder", function (req, res) {
+  console.log(req.body);
+  try {
+    kafka.make_request("deleteOrder_topic", req.body, function (err, results) {
+      if (err) {
+        console.log(err);
+        throw err;
+      } else {
+        if (results.status === 200) {
+          res.status(results.status).send({ message: results.message, });
+        } else if (results.status == 401) {
+          res.status(results.status).send({ message: results.message });
+        } else if (results.status === 400) {
+          res.status(results.status).send({ message: results.message });
+        }
+      }
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(400).json({ message: results.message });
+  }
+});
+
 module.exports = router;
