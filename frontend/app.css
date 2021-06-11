@@ -34,6 +34,29 @@
 /* .textBoxPanel {
   margin-top: 30%;
 } */
+/* .textPanel {
+  text-align:center;
+} */
+
+.title{
+  position: absolute;
+  margin-left: 30%;
+  width: 20%;
+  text-align: justify;
+  text-align-last: justify;
+}
+.title:before{
+  position: absolute;
+  left: 75%;
+  content: '\FF1A';
+}
+.value{
+  position: absolute;
+  text-align: left;
+  margin-left: 55%;
+  /* left: 2000%; */
+  /* padding-left: 25%; */
+}
 
 .textBox {
   margin-top: 5%;
