@@ -46,7 +46,7 @@ let Filter = async () => {
 function show_ticket(info) {
   let i = 0;
   for (i = 0; i < info.year.length; i++) {
-    let id = info.id[i]
+    let id = info.id[i];
     const card = document.createElement("div");
     card.setAttribute("class", "card");
 
@@ -62,13 +62,13 @@ function show_ticket(info) {
     const p = document.createElement("p");
     //p.textContent = info.description
     p.textContent =
-      info.start_hour[i] +
+      info.start_hour[i].toString().padStart(2, "0") +
       ":" +
-      info.start_minute[i] +
+      info.start_minute[i].toString().padStart(2, "0") +
       "->" +
-      info.end_hour[i] +
+      info.end_hour[i].toString().padStart(2, "0") +
       ":" +
-      info.end_minute[i];
+      info.end_minute[i].toString().padStart(2, "0");
 
     card.appendChild(h1);
     card.appendChild(h2);

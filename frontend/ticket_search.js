@@ -1,5 +1,5 @@
-function Return(){
-  window.location.href = "mainPage.html"
+function Return() {
+  window.location.href = "mainPage.html";
 }
 let Filter = async () => {
   let year = document.getElementById("year");
@@ -51,10 +51,10 @@ let Filter = async () => {
   } else if (Status === 400) window.alert(res.message);
   else window.alert("Filter Failed");
 };
-function show_ticket(info, start, destination) {
+function show_ticket(info, _start, _destination) {
   let i = 0;
   for (i = 0; i < info.year.length; i++) {
-    let year =  info.year[i];
+    let year = info.year[i];
     let month = info.month[i];
     let day = info.day[i];
     let start = info.start[i];
@@ -62,7 +62,7 @@ function show_ticket(info, start, destination) {
     let train_no = info.train_no[i];
     let price = info.price[i];
     let start_hour = info.start_hour[i];
-    let start_minute = info.start_minute[i]
+    let start_minute = info.start_minute[i];
     let end_hour = info.end_hour[i];
     let end_minute = info.end_minute[i];
 
@@ -76,18 +76,18 @@ function show_ticket(info, start, destination) {
     h1.textContent = info.year[i] + "/" + info.month[i] + "/" + info.day[i];
     const h2 = document.createElement("h1");
     //h2.textContent = info.running_time
-    h2.textContent = start + "->" + destination;
+    h2.textContent = _start + "->" + _destination;
     const p = document.createElement("h2");
     p.textContent =
-      info.start_hour[i] +
+      info.start_hour[i].toString().padStart(2, "0") +
       ":" +
-      info.start_minute[i] +
+      info.start_minute[i].toString().padStart(2, "0") +
       "->" +
-      info.end_hour[i] +
+      info.end_hour[i].toString().padStart(2, "0") +
       ":" +
-      info.end_minute[i];
+      info.end_minute[i].toString().padStart(2, "0");
     const h3 = document.createElement("h3");
-    h3.textContent = "車次： "+info.train_no[i] + " 價錢： " + info.price[i];
+    h3.textContent = "車次： " + info.train_no[i] + " 價錢： " + info.price[i];
 
     card.appendChild(h1);
     card.appendChild(h2);
@@ -99,8 +99,8 @@ function show_ticket(info, start, destination) {
       window.localStorage.setItem("year", year);
       window.localStorage.setItem("month", month);
       window.localStorage.setItem("day", day);
-      window.localStorage.setItem("start", start);
-      window.localStorage.setItem("destination", destination);
+      window.localStorage.setItem("start", _start);
+      window.localStorage.setItem("destination", _destination);
       window.localStorage.setItem("train_no", train_no);
       window.localStorage.setItem("price", price);
       window.localStorage.setItem("start_hour", start_hour);

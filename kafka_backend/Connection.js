@@ -8,7 +8,7 @@ function ConnectionProvider(topic_name) {
       { topic: topic_name, partition: 0 },
     ]);
     this.client.on("ready", function () {
-      console.log("client ready!");
+      console.log(topic_name + " consumer ready!");
     });
     // }
     return this.kafkaConsumerConnection;

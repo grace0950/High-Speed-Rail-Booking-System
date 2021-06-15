@@ -12,6 +12,7 @@ ${KAFKA_PATH}/bin/kafka-topics.sh --create --topic signup_topic --bootstrap-serv
 ${KAFKA_PATH}/bin/kafka-topics.sh --create --topic search_topic --bootstrap-server localhost:9092
 ${KAFKA_PATH}/bin/kafka-topics.sh --create --topic order_topic --bootstrap-server localhost:9092
 ${KAFKA_PATH}/bin/kafka-topics.sh --create --topic searchOrder_topic --bootstrap-server localhost:9092
+${KAFKA_PATH}/bin/kafka-topics.sh --create --topic deleteOrder_topic --bootstrap-server localhost:9092
 
 
 echo "Topic Created Success!"
